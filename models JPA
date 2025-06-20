@@ -1,0 +1,21 @@
+import javax.persistence.*
+
+@Entity
+data class Student(
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+    val firstName: String,
+    val lastName: String,
+    
+    @OneToMany(cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JoinColumn(name = "student_id")
+    val skills: List<Skill> = emptyList()
+)
+
+@Entity
+data class Skill(
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    val id: Long? = null,
+    val name: String,
+    val isHard: Boolean
+)
