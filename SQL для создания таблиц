@@ -1,0 +1,15 @@
+SQL для создания таблиц (src/main/resources/schema.sql)
+
+CREATE TABLE IF NOT EXISTS students (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS skills (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    student_id BIGINT NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    is_hard BOOLEAN NOT NULL,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE
+);
